@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                     <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('home') }}">Home<span class="sr-only"></span></a>
+                    <a class="nav-link" href="{{ route('cliente.index') }}">Home<span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item {{ Route::currentRouteName() == 'cliente.cadastro' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route("cliente.create") }}">Cadastro Clientes</a>

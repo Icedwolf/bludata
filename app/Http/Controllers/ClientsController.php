@@ -13,7 +13,9 @@ class ClientsController extends Controller {
      */
     public function index()
     {
-        return view('clientecadastro');
+        $clientes = Client::all();
+
+        return view('clientes.index', compact('clientes'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ClientsController extends Controller {
      */
     public function create()
     {
-        return view('clientecadastro');        
+        return view('clientes.cadastro');        
     }
 
     /**
@@ -34,19 +36,21 @@ class ClientsController extends Controller {
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'uf'=>'required',
             'nome_fantasia'=>'required',
-            'cnpj'=>'required'
+            'cnpj'=>'required|unique:clients'
         ]);
+        
+        $inputs = $request->all();
+
         $client = new Client([
-            'uf' => $request->get('uf'),
-            'nome_fantasia' => $request->get('nome_fantasia'),
-            'cnpj' => $request->get('cnpj'),
+            'uf' => $inputs['uf'],
+            'nome_fantasia' => $inputs['nome_fantasia'],
+            'cnpj' => $inputs['cnpj'],
         ]);
-        dd($client->save());
-        return redirect('/clients/create')->with('success', 'Cliente Salvo!');
+        $id = $client->save();
+        return redirect('/cliente/'.$id)->with('success', 'Cliente Salvo!');
     }
 
     /**
