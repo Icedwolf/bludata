@@ -3,12 +3,10 @@
     
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Home Page</div>
-
-                <div class="panel-body">
-                    Welcome!
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body text-center">
+                    Home
                 </div>
             </div>
         </div>
