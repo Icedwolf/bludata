@@ -1,5 +1,6 @@
-window._ = require('lodash');
-window.mask   = require('jquery-mask-plugin');
+window._          = require('lodash');
+window.mask       = require('jquery-mask-plugin');
+require('datatables.net-bs4');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

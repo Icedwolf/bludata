@@ -32,14 +32,6 @@
                     <li class="nav-item {{ Route::currentRouteName() == 'cliente.cadastro' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route("cliente.create") }}">Cadastro Clientes</a>
                     </li>
-                    {{-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Ação</a>
-                        <a class="dropdown-item" href="#">Outra ação</a>
-                    </li> --}}
                 </div>
             </nav>
         </div>
@@ -51,6 +43,5 @@
 </body>
 <!--   Core JS Files   -->
 <script src="{{ asset('js/app.js') }}"></script>
-
 @yield('scripts')
 </html>
