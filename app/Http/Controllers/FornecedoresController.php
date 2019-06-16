@@ -46,6 +46,7 @@ class FornecedoresController extends Controller
             'client_id'=>'required',
             'nome'=>'required',
         ];
+        $custom[] = '';
         if($request->pessoa == 'fisica'){
             $empresa = Client::find($request->client_id);
             if($empresa->uf == 'PR'){
@@ -71,9 +72,11 @@ class FornecedoresController extends Controller
             $inputs['cnpj'] = $inputs['cpf'];
         }
         $fornecedor = Fornecedor::create( $inputs );
-        foreach($inputs['telefone'] as $telefone){
-            Telefone::create(['fonecedor_id' => $fornecedor->id, 'telefone' => $telefone]);
-        }   
+        if($inputs['telefone'][0] != null) {
+            foreach($inputs['telefone'] as $telefone){
+                Telefone::create(['fonecedor_id' => $fornecedor->id, 'telefone' => $telefone]);
+            } 
+        }
         return redirect()->route($this->route . 'edit', $fornecedor->id)->with('success', 'Registro Criado com Sucesso');
     }
 
@@ -111,24 +114,28 @@ class FornecedoresController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [
+            'client_id'=>'required',
+            'nome'=>'required',
+        ];
+        $custom[] = '';
         if($request->pessoa == 'fisica'){
-            $validator = Validator::make($request->all(),[
-                'client_id'=>'required',
-                'nome'=>'required',
-                'cpf'=>'required',
-                'rg' => 'required',
-                'nascimento' => 'required'
-            ]);
+            $empresa = Client::find($request->client_id);
+            if($empresa->uf == 'PR'){
+                $rules['nascimento']  = 'required|valid_birth_date';
+                $custom['nascimento.valid_birth_date'] = 'Você precisa ser maior de 18 anos';
+            }else {
+                $rules['nascimento'] = 'required';
+            }
+            $rules['cpf'] = 'required';
+            $rules['rg']  = 'required';
         } else {
-            $validator = Validator::make($request->all(),[
-                'client_id'=>'required',
-                'nome'=>'required',
-                'cnpj'=>'required',
-            ]);
+                $rules['cnpj'] = 'required';
         }
+        $validator = Validator::make($request->all(),$rules,$custom);
         if ($validator->fails()) {
             return redirect()
-                    ->route($this->route . 'create')
+                    ->back()
                     ->withErrors($validator)
                     ->withInput();
         }
@@ -138,11 +145,11 @@ class FornecedoresController extends Controller
         }
         $fornecedor = Fornecedor::find($id);
         $fornecedor->update( $inputs );
-        if($inputs['telefone'][0] != null){
-            foreach($inputs['telefone'] as $telefone){
+        foreach($inputs['telefone'] as $telefone){
+            if($telefone != null){
                 Telefone::create(['fonecedor_id' => $fornecedor->id, 'telefone' => $telefone]);
-            }   
-        }
+            }
+        }   
         return redirect()->route($this->route . 'edit', $fornecedor->id)->with('success', 'Registro atualizado com sucesso');
     }
 

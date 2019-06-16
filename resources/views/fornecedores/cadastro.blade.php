@@ -60,7 +60,7 @@
                 <div class="col-sm">
                     <div class="form-group">
                         <label>CNPJ <span class="text-danger">*</span></label>
-                        <input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="00.000.000/0000-00" value="{{isset($fornecedor) ? $fornecedor->cnpj : old('cnpj') }}">
+                        <input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="00.000.000/0000-00" value="{{isset($fornecedor) && !$fornecedor->rg ? $fornecedor->cnpj : old('cnpj') }}">
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="col-sm">
                     <div class="form-group">
                         <label>CPF <span class="text-danger">*</span></label>
-                        <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00" value="{{isset($fornecedor) ? $fornecedor->cnpj : old('cnpj') }}">
+                        <input type="text" name="cpf" id="cpf" class="form-control" placeholder="000.000.000-00" value="{{ isset($fornecedor) && $fornecedor->rg ? $fornecedor->cnpj : old('cnpj') }}">
                     </div>
                 </div>
                 <div class="col-sm">

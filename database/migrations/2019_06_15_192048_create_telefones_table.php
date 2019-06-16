@@ -19,7 +19,7 @@ class CreateTelefonesTable extends Migration
             $table->string('telefone');
             $table->timestamps();
 
-            $table->foreign('fornecedor_id')->references('id')->on('fornecedores')->onDelete('cascade');
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedors')->onDelete('cascade');
         });
     }
 
