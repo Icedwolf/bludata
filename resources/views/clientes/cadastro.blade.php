@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
     <div class="col-md">
-            @if ($errors->any())
+        @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -11,11 +11,16 @@
                     </ul>
                 </div>
             @endif
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
             @if( isset($client->id) )
-            <form id="" method="post" action="{{ route('cliente.update', [$client->id]) }}" enctype="multipart/form-data">
+            <form id="" method="post" action="{{ route('empresa.update', [$client->id]) }}" enctype="multipart/form-data">
             {{ method_field('PUT') }}
             @else
-            <form method="POST" action="{{ route('cliente.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('empresa.store') }}" enctype="multipart/form-data">
             @endif
             @csrf
             <div class="form-group">
@@ -50,5 +55,10 @@
         $(function() {
             $('#cnpj').mask('00.000.000/0000-00', {reverse: true});
         })
+        $(document).ready(function() {
+            var x = 0;
+            
+        });
+        
     </script>
 @endsection

@@ -10,6 +10,7 @@
 						<td>UF</td>
 						<td>Nome Fantasia</td>
 						<td>CNPJ</td>
+						<td>Fornecedores</td>
 						<td>Ações</td>
 					</tr>
 			</thead>
@@ -20,11 +21,12 @@
 							<td>{{$cliente->uf}}</td>
 							<td>{{$cliente->nome_fantasia}}</td>
 							<td>{{$cliente->cnpj}}</td>
+							<td><a href="{{ route("lista-fornecedores", $cliente->id) }}" class="btn btn-primary">Fornecedores</a></td>
 							<td>
-									<a href="{{ route('cliente.edit', $cliente->id) }}" class="action_edit"><i class="ti-pencil-alt"></i> Editar</a>
+									<a href="{{ route('empresa.edit', $cliente->id) }}" class="action_edit"><i class="ti-pencil-alt"></i> Editar</a>
 									|
-									<a href="{{ route('cliente.destroy', $cliente->id) }}" class="action_destroy"><i class="ti-trash"></i> Remover</a>
-									<form id="" method="post" action="{{ route('cliente.destroy', $cliente->id) }}">
+									<a href="{{ route('empresa.destroy', $cliente->id) }}" class="action_destroy"><i class="ti-trash"></i> Remover</a>
+									<form id="" method="post" action="{{ route('empresa.destroy', $cliente->id) }}">
 											{{ method_field('DELETE') }}
 											{{ csrf_field() }}
 									</form>
@@ -35,15 +37,4 @@
   </table>
 <div>
 </div>
-@endsection
-@section('scripts')
-<script>
-$('table:not(.custom)').DataTable({
-    responsive: true,
-    aaSorting: [],
-    "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-    }
-});
-</script>
 @endsection

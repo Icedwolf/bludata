@@ -20,17 +20,21 @@
     <div class="container">
         <div class="col-md">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Bludata</a>
+                <a class="navbar-brand" href="{{ route('home') }}">Bludata</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                     <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ Route::currentRouteName() == 'home' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('cliente.index') }}">Home<span class="sr-only"></span></a>
+                    <a class="nav-link" href="{{ route('empresa.index') }}">Empresas<span class="sr-only"></span></a>
                     </li>
-                    <li class="nav-item {{ Route::currentRouteName() == 'cliente.cadastro' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route("cliente.create") }}">Cadastro Clientes</a>
+                    <li class="nav-item {{ Route::currentRouteName() == 'empresa.create' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route("empresa.create") }}">Cadastro Empresas</a>
+                    </li>
+                    </li>
+                    <li class="nav-item {{ Route::currentRouteName() == 'fornecedores.create' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route("fornecedores.create") }}">Cadastro Representantes</a>
                     </li>
                 </div>
             </nav>

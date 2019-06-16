@@ -12,4 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('cliente', 'ClientsController');
+Route::resource('empresa', 'ClientsController');
+Route::get('empresa/fornecedores/{id}', 'ClientsController@fornecedores')->name('lista-fornecedores');
+Route::resource('fornecedores', 'FornecedoresController');
+Route::get('fornecedores/telefone/{id}', 'FornecedoresController@deletaTelefone')->name('fornecedor.detroy.telefone');

@@ -6,3 +6,20 @@
 
 require('./bootstrap');
 
+$('.action_destroy').on('click', function(e){
+    e.preventDefault();
+
+    if( !confirm('Deseja realmente excluir este registro?') ) {
+        return false;
+    }
+
+    $(this).parent().find('form').submit();
+    return;
+});
+$('table:not(.custom)').DataTable({
+    responsive: true,
+    aaSorting: [],
+    "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+    }
+});
